@@ -1,3 +1,7 @@
+@use 'sass:list';
+
+@use './variables.scss' as *;
+
 // Responsive Breakpoints
 $breakpoint-xs: 320px;
 $breakpoint-sm: 640px;
@@ -129,8 +133,11 @@ $breakpoint-2xl: 1536px;
 
 // Smooth Transitions
 @mixin transition($properties...) {
-  $property-list: if(length($properties) == 0, all, $properties);
-  transition: $property-list $transition-normal;
+  @if list.length($properties) == 0 {
+    transition: all $transition-normal;
+  } @else {
+    transition: $properties $transition-normal;
+  }
   
   @media (prefers-reduced-motion: reduce) {
     transition: none;
@@ -138,8 +145,11 @@ $breakpoint-2xl: 1536px;
 }
 
 @mixin transition-fast($properties...) {
-  $property-list: if(length($properties) == 0, all, $properties);
-  transition: $property-list $transition-fast;
+  @if list.length($properties) == 0 {
+    transition: all $transition-fast;
+  } @else {
+    transition: $properties $transition-fast;
+  }
   
   @media (prefers-reduced-motion: reduce) {
     transition: none;
@@ -147,8 +157,11 @@ $breakpoint-2xl: 1536px;
 }
 
 @mixin transition-slow($properties...) {
-  $property-list: if(length($properties) == 0, all, $properties);
-  transition: $property-list $transition-slow;
+  @if list.length($properties) == 0 {
+    transition: all $transition-slow;
+  } @else {
+    transition: $properties $transition-slow;
+  }
   
   @media (prefers-reduced-motion: reduce) {
     transition: none;
