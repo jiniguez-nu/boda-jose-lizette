@@ -1,0 +1,39 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.footer {
+  background-color: $gray-50;
+  border-top: 1px solid $gray-200;
+  margin-top: $space-20;
+  padding: $space-12 $space-4;
+
+  @include respond-md {
+    padding: $space-16 $space-6;
+  }
+
+  .container {
+    @include container;
+    @include flex-column-center;
+    gap: $space-4;
+    text-align: center;
+  }
+
+  .copyright {
+    font-size: $font-size-sm;
+    color: $gray-600;
+    margin: 0;
+  }
+
+  .designedWith {
+    font-size: $font-size-base;
+    color: $primary;
+    margin: 0;
+    font-weight: $font-weight-semibold;
+  }
+
+  .privacyNote {
+    font-size: $font-size-sm;
+    color: $gray-500;
+    margin: 0;
+  }
+}

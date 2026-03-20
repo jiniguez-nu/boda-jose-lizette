@@ -1,0 +1,150 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.rsvpWrapper {
+  padding: $space-16 $space-4;
+  background-color: $white;
+
+  @include respond-md {
+    padding: $space-20 $space-6;
+  }
+
+  .container {
+    @include container;
+    max-width: 500px;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: $space-3;
+    color: $black;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: $gray-600;
+    margin-bottom: $space-12;
+    font-size: $font-size-lg;
+  }
+
+  .form {
+    @include flex-column;
+    gap: $space-6;
+  }
+
+  .formGroup {
+    @include flex-column;
+    gap: $space-2;
+
+    label {
+      font-weight: $font-weight-semibold;
+      color: $black;
+      font-size: $font-size-base;
+      display: flex;
+      gap: $space-2;
+      align-items: center;
+    }
+
+    input,
+    textarea {
+      @include input-base;
+      font-size: $font-size-base;
+
+      &:focus {
+        border-color: $primary;
+        box-shadow: 0 0 0 3px rgba($primary, 0.1), 0 0 0 5px $primary;
+      }
+
+      &::placeholder {
+        color: $gray-400;
+      }
+
+      &:disabled {
+        background-color: $gray-100;
+        cursor: not-allowed;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+      padding: $space-3 $space-4;
+      font-family: $font-family-base;
+    }
+  }
+
+  .optional {
+    font-weight: $font-weight-regular;
+    color: $gray-500;
+    font-size: $font-size-sm;
+  }
+
+  .error {
+    color: $error;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+  }
+
+  .message {
+    padding: $space-4;
+    border-radius: $radius-md;
+    text-align: center;
+    font-weight: $font-weight-medium;
+    animation: slideIn 300ms ease-out;
+
+    &.success {
+      background-color: rgba($success, 0.1);
+      color: $success;
+      border: 1px solid rgba($success, 0.2);
+    }
+
+    &.error {
+      background-color: rgba($error, 0.1);
+      color: $error;
+      border: 1px solid rgba($error, 0.2);
+    }
+  }
+
+  .submitButton {
+    @include button-base;
+    padding: $space-4 $space-8;
+    background-color: $primary;
+    color: $white;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    border-radius: $radius-md;
+    @include transition(all);
+    margin-top: $space-2;
+
+    &:hover:not(:disabled) {
+      background-color: $primary-dark;
+      transform: translateY(-2px);
+      box-shadow: $shadow-lg;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba($primary, 0.2), 0 0 0 5px $primary;
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,73 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.gift {
+  padding: $space-16 $space-4;
+  background-color: $white;
+
+  @include respond-md {
+    padding: $space-20 $space-6;
+  }
+
+  .container {
+    @include container;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: $space-12;
+    color: $black;
+  }
+
+  .card {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: $secondary;
+    padding: $space-8;
+    border-radius: $radius-lg;
+    text-align: center;
+    @include flex-column-center;
+    gap: $space-4;
+    box-shadow: $shadow-md;
+    border: 2px solid rgba($primary, 0.1);
+    @include transition(all);
+
+    &:hover {
+      box-shadow: $shadow-lg;
+      border-color: rgba($primary, 0.2);
+      transform: translateY(-4px);
+    }
+
+    @include respond-md {
+      padding: $space-6;
+    }
+  }
+
+  .icon {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  h3 {
+    color: $primary;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-2xl;
+    margin: 0;
+    margin-top: $space-2;
+
+    @include respond-md {
+      font-size: $font-size-xl;
+    }
+  }
+
+  p {
+    color: $gray-600;
+    font-size: $font-size-lg;
+    line-height: $line-height-relaxed;
+    margin: 0;
+
+    @include respond-md {
+      font-size: $font-size-base;
+    }
+  }
+}

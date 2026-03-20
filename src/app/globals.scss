@@ -1,0 +1,202 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+// Reset and Base Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  
+  @include mobile-only {
+    font-size: 14px;
+  }
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-normal;
+  color: $gray-700;
+  background-color: $white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+// Typography
+h1 {
+  @include heading;
+  font-size: $font-size-5xl;
+  margin-bottom: $space-6;
+  
+  @include respond-md {
+    font-size: $font-size-4xl;
+    margin-bottom: $space-4;
+  }
+}
+
+h2 {
+  @include heading;
+  font-size: $font-size-4xl;
+  margin-bottom: $space-5;
+  
+  @include respond-md {
+    font-size: $font-size-3xl;
+    margin-bottom: $space-4;
+  }
+}
+
+h3 {
+  @include heading;
+  font-size: $font-size-3xl;
+  margin-bottom: $space-4;
+  
+  @include respond-md {
+    font-size: $font-size-2xl;
+  }
+}
+
+h4 {
+  @include heading;
+  font-size: $font-size-2xl;
+  margin-bottom: $space-3;
+}
+
+h5 {
+  @include heading;
+  font-size: $font-size-xl;
+  margin-bottom: $space-3;
+}
+
+h6 {
+  @include heading;
+  font-size: $font-size-lg;
+  margin-bottom: $space-2;
+}
+
+p {
+  margin-bottom: $space-4;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Links
+a {
+  color: $primary;
+  text-decoration: none;
+  @include transition(color);
+  
+  &:hover {
+    color: $primary-dark;
+  }
+  
+  &:focus {
+    @include focus-state($primary);
+    border-radius: $radius-sm;
+  }
+}
+
+// Lists
+ul,
+ol {
+  margin-left: $space-5;
+  margin-bottom: $space-4;
+  
+  li {
+    margin-bottom: $space-2;
+  }
+}
+
+// Code
+code {
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+  background-color: $gray-100;
+  padding: $space-1 $space-2;
+  border-radius: $radius-sm;
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Form Elements
+input,
+textarea,
+select {
+  @include input-base;
+}
+
+textara {
+  font-family: $font-family-base;
+  resize: vertical;
+  min-height: 120px;
+}
+
+button {
+  @include button-base;
+}
+
+// Main App Layout
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+// Custom Scrollbar
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: $gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $primary;
+  border-radius: $radius-md;
+  
+  &:hover {
+    background: $primary-dark;
+  }
+}
+
+// Fix for Firefox
+* {
+  scrollbar-color: $primary $gray-100;
+  scrollbar-width: thin;
+}
+
+// Utility Classes
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.container {
+  @include container;
+}

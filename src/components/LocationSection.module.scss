@@ -1,0 +1,129 @@
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
+
+.location {
+  padding: $space-16 $space-4;
+  background-color: $gray-50;
+
+  @include respond-md {
+    padding: $space-20 $space-6;
+  }
+
+  .container {
+    @include container;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: $space-12;
+    color: $black;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-8;
+    align-items: start;
+
+    @include tablet-and-down {
+      grid-template-columns: 1fr;
+      gap: $space-6;
+    }
+  }
+
+  .info {
+    @include flex-column;
+    gap: $space-8;
+  }
+
+  .dateTime {
+    @include flex-column;
+    gap: $space-2;
+
+    h3 {
+      font-size: $font-size-4xl;
+      color: $primary;
+      margin: 0;
+      font-weight: $font-weight-bold;
+
+      @include respond-md {
+        font-size: $font-size-3xl;
+      }
+    }
+
+    p {
+      font-size: $font-size-2xl;
+      color: $gray-600;
+      margin: 0;
+    }
+  }
+
+  .address {
+    @include flex-column;
+    gap: $space-3;
+
+    h3 {
+      font-size: $font-size-2xl;
+      color: $black;
+      margin: 0;
+      font-weight: $font-weight-semibold;
+    }
+
+    p {
+      font-size: $font-size-lg;
+      color: $gray-600;
+      margin: 0;
+    }
+  }
+
+  .buttons {
+    @include flex-column;
+    gap: $space-3;
+    margin-top: $space-4;
+
+    @include respond-md {
+      flex-direction: column;
+    }
+  }
+
+  .button {
+    @include button-base;
+    padding: $space-3 $space-6;
+    background-color: $primary;
+    color: $white;
+    font-size: $font-size-base;
+    text-decoration: none;
+    transition: all $transition-normal;
+    border-radius: $radius-md;
+
+    &:hover {
+      background-color: $primary-dark;
+      transform: translateY(-2px);
+      box-shadow: $shadow-md;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba($primary, 0.2), 0 0 0 5px $primary;
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .mapContainer {
+    border-radius: $radius-lg;
+    overflow: hidden;
+    box-shadow: $shadow-lg;
+    height: 450px;
+
+    @include respond-md {
+      height: 300px;
+    }
+
+    iframe {
+      border: none !important;
+    }
+  }
+}
