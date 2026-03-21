@@ -1,5 +1,23 @@
 @use '../styles/variables.scss' as *;
 @use '../styles/mixins.scss' as *;
+@import url('https://fonts.googleapis.com/css2?family=Gwendolyn:wght@700');
+
+:root {
+  --color-primary: #edaf64;
+  --color-primary-hover: #d99a4e;
+  --color-text-primary: #a16207;
+  --color-text-dark: #713f12;
+  --color-text-medium: #854d0e;
+  --color-text-light: #a16207;
+  --color-bg-white: rgba(255, 255, 255, 0.8);
+  --color-bg-white-solid: #f5f5f5;
+  --color-border: rgba(229, 231, 235, 0.6);
+  --color-error: #dc2626;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-script: 'Gwendolyn', cursive;
+}
 
 // Reset and Base Styles
 * {
@@ -199,4 +217,114 @@ main {
 
 .container {
   @include container;
+}
+
+.nav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 94px;
+  padding: 1.5rem;
+  background-color: var(--color-bg-white-solid);
+  z-index: 40;
+  display: flex;
+  justify-content: flex-start;
+  pointer-events: none;
+}
+
+.nav-container .hamburger-btn {
+  pointer-events: auto;
+}
+
+.title-main {
+  font-size: 1.2rem;
+  line-height: 1.1;
+  color: var(--color-text-dark);
+  font-family: var(--font-script);
+  font-weight: 700;
+  margin: 0 auto;
+
+  span {
+    color: var(--color-primary);
+    opacity: 0.9;
+  }
+
+  @media (min-width: 480px){
+    font-size: 2rem;
+  }
+
+  @media (min-width: 1024px){
+    font-size: 1.4rem;
+  }
+
+  @media (min-width: 1148px){
+    font-size: 2.2rem;
+  }
+}
+
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  z-index: 45;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav-overlay--open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 18rem;
+  max-width: 80vw;
+  background-color: var(--color-bg-white-solid);
+  z-index: 50;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 10px 0 15px -3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-menu--open {
+  transform: translateX(0);
+}
+
+.nav-menu__header {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav-menu__content {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--color-primary);
+  }
 }

@@ -19,10 +19,6 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <div className={styles.logo}>
-          <h1>Nos Casamos</h1>
-        </div>
-
         <button
           className={styles.menuButton}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -34,9 +30,15 @@ export default function Header() {
         </button>
 
         <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
+          {isMenuOpen && (<h1 className="title-main">
+            Laura Lizette <span>&</span> José María
+          </h1>)}
           <button onClick={() => scrollToSection('home')}>{header.navHome}</button>
           <button onClick={() => scrollToSection('location')}>{header.navLocation}</button>
           <button onClick={() => scrollToSection('story')}>{header.navStory}</button>
+          {!isMenuOpen && (<h1 className="title-main">
+            Laura Lizette <span>&</span> José María
+          </h1>)}
           <button onClick={() => scrollToSection('gift')}>{header.navGift}</button>
           <button onClick={() => scrollToSection('gallery')}>{header.navGallery}</button>
           <button onClick={() => scrollToSection('rsvp')} className={styles.rsvpButton}>
