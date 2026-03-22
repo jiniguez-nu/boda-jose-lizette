@@ -2,5 +2,18 @@
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 25;
+  z-index: 1;
+}
+
+@keyframes drawFlower {
+  0% {
+    stroke-dashoffset: 6400;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.flowerPath {
+  animation: drawFlower var(--draw-duration, 3s) ease-in-out forwards;
 }

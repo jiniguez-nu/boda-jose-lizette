@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import styles from './FlowerSystem.module.scss';
+import { FLOWER1, FLOWER2, FLOWER3, FLOWER4 } from '@/lib/flowers/flowers';
 
 type Flower = {
   id: number;
@@ -10,12 +11,14 @@ type Flower = {
   size: number;
   life: number;
   maxLife: number;
-  velocityY: number;
+  drawDuration: number;
+  element?: HTMLDivElement;
 };
 
 export default function FlowerSystem() {
   const containerRef = useRef<HTMLDivElement>(null);
   const flowers = useRef<Flower[]>([]);
+  const elementMap = useRef<Map<number, HTMLDivElement>>(new Map());
   let id = 0;
 
   useEffect(() => {
@@ -26,8 +29,8 @@ export default function FlowerSystem() {
         y: Math.random() * 100,
         size: 40 + Math.random() * 60,
         life: 0,
-        maxLife: 300 + Math.random() * 200,
-        velocityY: -0.02 - Math.random() * 0.05,
+        maxLife: 600 + Math.random() * 300,
+        drawDuration: 3 + Math.random() * 3,
       });
     };
 
@@ -36,44 +39,54 @@ export default function FlowerSystem() {
       if (!container) return;
 
       // spawn aleatorio
-      if (Math.random() < 0.02) spawnFlower();
-
-      flowers.current = flowers.current.filter(f => f.life < f.maxLife);
-
-      container.innerHTML = '';
+      if (Math.random() < 0.01) spawnFlower();
 
       flowers.current.forEach(f => {
         f.life++;
 
         const progress = f.life / f.maxLife;
 
-        // movimiento flotante
-        f.y += f.velocityY;
-
+        // Desvanecimiento al inicio y final
         const opacity =
-          progress < 0.2
-            ? progress * 5
-            : progress > 0.7
-            ? (1 - progress) * 3
+          progress < 0.1
+            ? progress * 10
+            : progress > 0.85
+            ? (1 - progress) * 6.67
             : 1;
 
-        const blur = progress > 0.7 ? (progress - 0.7) * 10 : 0;
+        // Create element only once
+        if (!elementMap.current.has(f.id)) {
+          const el = document.createElement('div');
+          el.style.position = 'absolute';
+          el.style.left = `${f.x}%`;
+          el.style.top = `${f.y}%`;
+          el.style.width = `${f.size}px`;
+          el.style.height = `${f.size}px`;
+          el.style.transform = 'translate(-50%, -50%)';
+          el.style.setProperty('--draw-duration', `${f.drawDuration}s`);
+          el.innerHTML = getRandomFlowerSVG();
+          container.appendChild(el);
+          elementMap.current.set(f.id, el);
+        }
 
-        const scale = 1 + progress * 0.3;
-
-        const el = document.createElement('div');
-        el.style.position = 'absolute';
-        el.style.left = `${f.x}%`;
-        el.style.top = `${f.y}%`;
-        el.style.width = `${f.size}px`;
-        el.style.height = `${f.size}px`;
-        el.style.transform = `translate(-50%, -50%) scale(${scale})`;
-        el.style.opacity = `${opacity}`;
-        el.style.filter = `blur(${blur}px)`;
-        el.innerHTML = getRandomFlowerSVG();
-
-        container.appendChild(el);
+        // Update only opacity
+        const el = elementMap.current.get(f.id);
+        if (el) {
+          el.style.opacity = `${opacity}`;
+        }
       });
+
+      // Remove dead flowers
+      flowers.current = flowers.current.filter(f => f.life < f.maxLife);
+      
+      // Clean up removed elements from map
+      for (const [flowerId] of elementMap.current) {
+        if (!flowers.current.find(f => f.id === flowerId)) {
+          const el = elementMap.current.get(flowerId);
+          if (el) el.remove();
+          elementMap.current.delete(flowerId);
+        }
+      }
 
       requestAnimationFrame(loop);
     };
@@ -86,23 +99,10 @@ export default function FlowerSystem() {
 
 function getRandomFlowerSVG() {
   const flowers = [
-    `<svg viewBox="0 0 100 100">
-      <path d="M50 10 C70 30, 70 70, 50 90 C30 70, 30 30, 50 10"
-        fill="none"
-        stroke="rgba(237, 175, 100, 0.8)"
-        stroke-width="2"
-      />
-      <circle cx="50" cy="50" r="4" fill="rgba(237, 175, 100, 0.8)" />
-    </svg>`,
-
-    `<svg viewBox="0 0 100 100">
-      <circle cx="50" cy="30" r="12" fill="rgba(237, 175, 100, 0.7)" />
-      <circle cx="75" cy="50" r="12" fill="rgba(237, 175, 100, 0.7)" />
-      <circle cx="60" cy="75" r="12" fill="rgba(237, 175, 100, 0.7)" />
-      <circle cx="40" cy="75" r="12" fill="rgba(237, 175, 100, 0.7)" />
-      <circle cx="25" cy="50" r="12" fill="rgba(237, 175, 100, 0.7)" />
-      <circle cx="50" cy="50" r="8" fill="rgba(237, 175, 100, 0.9)" />
-    </svg>`
+    FLOWER1,
+    FLOWER2,
+    FLOWER3,
+    FLOWER4,
   ];
 
   return flowers[Math.floor(Math.random() * flowers.length)];

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.scss';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import FlowerSystem from '@/components/FlowerSystem';
 
 export const metadata: Metadata = {
   title: 'Nos Casamos | Invitación',
@@ -23,6 +24,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <FlowerSystem />
       </body>
     </html>
   );
