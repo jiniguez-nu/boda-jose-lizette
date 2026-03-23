@@ -7,8 +7,10 @@ export default function HeroSection() {
   return (
     <section id="home" className={styles.hero}>
       <div className={styles.content}>
-        <h1>{hero.title}</h1>
         <p>{hero.subtitle}</p>
+        <br />
+        <p>{hero.subtitle2}</p>
+        <h1>{hero.title}</h1>
         <div className={styles.scrollIndicator}>
           <span>{hero.scrollHint}</span>
           <div className={styles.chevron}>

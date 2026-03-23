@@ -11,8 +11,9 @@ export const translations = {
 
   // Hero Section
   hero: {
-    title: 'Nos Casamos',
-    subtitle: 'Te invitamos a celebrar nuestro amor',
+    title: 'Nuestra Boda!',
+    subtitle: 'Deseamos compartir el inicio de esta etapa de nuestra vida con las personas que más apreciamos y que han sido parte de nuestro camino.',
+    subtitle2: 'Después de tantas historias juntos, llega el momento de celebrar una vez más...',
     scrollHint: 'Desplázate para más',
   },
 
@@ -40,7 +41,7 @@ export const translations = {
 
   // Gift Registry Section
   giftSection: {
-    title: 'Regalos',
+    title: 'Mesa de Regalos',
     description: 'Tu presencia es suficiente para hacernos felices.',
     details: 'Sin embargo, si deseas hacer un regalo, puedes encontrar nuestras opciones en las tiendas asociadas. Lo más importante para nosotros es compartir este día contigo.',
   },

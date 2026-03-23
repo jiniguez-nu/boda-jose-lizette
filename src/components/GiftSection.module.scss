@@ -54,7 +54,8 @@
   }
 
   h3 {
-    color: $primary;
+    font-family: var(--font-sans);
+    color: $black;
     font-weight: $font-weight-bold;
     font-size: $font-size-2xl;
     margin: 0;

@@ -35,13 +35,18 @@
     }
 
     p {
-      font-size: $font-size-xl;
-      color: $gray-600;
+      font-family: var(--font-script);
+      font-size: $font-size-4xl;
+      color: $primary;
       line-height: $line-height-relaxed;
       margin-bottom: 0;
 
       @include respond-md {
-        font-size: $font-size-lg;
+        font-size: $font-size-4xl;
+      }
+
+      @media (max-width: 520px) {
+        font-size: $font-size-3xl;
       }
     }
   }
