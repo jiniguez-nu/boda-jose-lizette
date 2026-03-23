@@ -1,6 +1,7 @@
 @use '../styles/variables.scss' as *;
 @use '../styles/mixins.scss' as *;
 @import url('https://fonts.googleapis.com/css2?family=Gwendolyn:wght@700');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 :root {
   --color-primary: #edaf64;
@@ -14,8 +15,7 @@
   --color-border: rgba(229, 231, 235, 0.6);
   --color-error: #dc2626;
 
-  --font-sans: 'Inter', sans-serif;
-  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Open Sans', sans-serif;
   --font-script: 'Gwendolyn', cursive;
 }
 
@@ -49,6 +49,8 @@ body {
 
 // Typography
 h1 {
+  font-family: var(--font-script);
+
   @include heading;
   font-size: $font-size-5xl;
   margin-bottom: $space-6;
@@ -60,17 +62,21 @@ h1 {
 }
 
 h2 {
+  font-family: var(--font-script) !important;
+
   @include heading;
-  font-size: $font-size-4xl;
+  font-size: $font-size-6xl;
   margin-bottom: $space-5;
   
   @include respond-md {
-    font-size: $font-size-3xl;
+    font-size: $font-size-5xl;
     margin-bottom: $space-4;
   }
 }
 
 h3 {
+  font-family: var(--font-script);
+
   @include heading;
   font-size: $font-size-3xl;
   margin-bottom: $space-4;
@@ -81,24 +87,31 @@ h3 {
 }
 
 h4 {
+  font-family: var(--font-script);
+
   @include heading;
   font-size: $font-size-2xl;
   margin-bottom: $space-3;
 }
 
 h5 {
+  font-family: var(--font-script);
+
   @include heading;
   font-size: $font-size-xl;
   margin-bottom: $space-3;
 }
 
 h6 {
+  font-family: var(--font-script);
+
   @include heading;
   font-size: $font-size-lg;
   margin-bottom: $space-2;
 }
 
 p {
+  font-family: var(--font-sans);
   margin-bottom: $space-4;
   
   &:last-child {

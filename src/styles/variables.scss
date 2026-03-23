@@ -1,5 +1,5 @@
 // Color Palette - Pastel Walnut Theme
-$primary: #a89968;
+$primary: #713f12;// #a89968;
 $primary-light: #c9b896;
 $primary-dark: #8b7d5f;
 $secondary: #f5f3f0;
@@ -8,7 +8,7 @@ $accent: #d4a574;
 // Neutral Colors
 $white: #ffffff;
 $black: #0a0a0a;
-$gray-50: #f9f8f6;
+$gray-50: rgba(249, 248, 246, 0.6);
 $gray-100: #f3f0ed;
 $gray-200: #e8e5e1;
 $gray-300: #ddd9d4;
@@ -36,6 +36,7 @@ $font-size-2xl: 1.5rem; // 24px
 $font-size-3xl: 1.875rem; // 30px
 $font-size-4xl: 2.25rem; // 36px
 $font-size-5xl: 3rem; // 48px
+$font-size-6xl: 4rem; // 64px
 
 $font-weight-light: 300;
 $font-weight-regular: 400;

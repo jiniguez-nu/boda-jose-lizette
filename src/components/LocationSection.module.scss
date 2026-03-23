@@ -2,8 +2,10 @@
 @use '@/styles/mixins.scss' as *;
 
 .location {
+  position: relative;
   padding: $space-16 $space-4;
   background-color: $gray-50;
+  z-index: 2;
 
   @include respond-md {
     padding: $space-20 $space-6;
@@ -11,6 +13,13 @@
 
   .container {
     @include container;
+    min-width: 100%;
+    min-height: 520px;
+    background-image: url("/sky360-3.png");
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    background-blend-mode: darken;
   }
 
   h2 {
@@ -20,11 +29,13 @@
   }
 
   .content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: $space-8;
-    align-items: start;
-
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 80%;
     @include tablet-and-down {
       grid-template-columns: 1fr;
       gap: $space-6;
@@ -89,8 +100,8 @@
   .button {
     @include button-base;
     padding: $space-3 $space-6;
-    background-color: $primary;
-    color: $white;
+    background-color: $gray-300;
+    color: $primary;
     font-size: $font-size-base;
     text-decoration: none;
     transition: all $transition-normal;

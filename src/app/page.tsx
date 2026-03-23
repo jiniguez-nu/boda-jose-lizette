@@ -11,8 +11,8 @@ export default function Home() {
       <HeroSection />
       <LocationSection />
       <OurStory />
-      <GiftSection />
       <Gallery />
+      <GiftSection />
       <RsvpForm />
     </>
   );

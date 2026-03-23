@@ -54,7 +54,7 @@ export const translations = {
   // RSVP Section
   rsvpSection: {
     title: 'Confirmar Asistencia',
-    description: 'Por favor confirma tu asistencia antes del 15 de Mayo de 2026',
+    description: 'Por favor confirma tu asistencia antes del 10 de Mayo de 2026',
     form: {
       firstName: 'Nombre',
       firstName_placeholder: 'Tu nombre',

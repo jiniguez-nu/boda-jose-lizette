@@ -22,14 +22,15 @@
     animation: fadeInUp 1s ease-out;
 
     h1 {
-      font-size: $font-size-5xl;
-      color: $primary;
+      font-family: var(--font-script);
+      font-size: $font-size-6xl;
+      color: var(--color-text-dark);
       margin-bottom: $space-6;
       font-weight: $font-weight-bold;
       letter-spacing: -0.5px;
 
       @include respond-md {
-        font-size: $font-size-4xl;
+        font-size: $font-size-5xl;
       }
     }
 

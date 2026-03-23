@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import styles from './Gallery.module.scss';
 import { translations } from '@/lib/translations';
+import GalleryCarousel from './GalleryCarousel';
 
 export default function Gallery() {
   const { gallerySection } = translations;
@@ -21,8 +21,10 @@ export default function Gallery() {
       <div className={styles.container}>
         <h2>{gallerySection.title}</h2>
         <p className={styles.description}>{gallerySection.description}</p>
-
-        <div className={styles.grid}>
+        
+        {/* Galleria aqui*/}
+        <GalleryCarousel setSelectedImage={setSelectedImage}/>
+        {/* <div className={styles.grid}>
           {images.map((image, index) => (
             <div
               key={image.id}
@@ -44,7 +46,7 @@ export default function Gallery() {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       {selectedImage !== null && (
