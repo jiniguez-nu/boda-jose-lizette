@@ -8,7 +8,6 @@ export default function proxy(request: NextRequest) {
   if (
     url.pathname.startsWith('/_next') ||
     url.pathname.startsWith('/api') ||
-    url.pathname === '/login' ||
     url.pathname === '/robots.txt' ||
     url.pathname.startsWith('/favicon.ico') ||
     url.pathname.match(/\.(png|jpg|jpeg|svg|gif|ics)$/)
@@ -17,8 +16,13 @@ export default function proxy(request: NextRequest) {
   }
 
   const authCookie = request.cookies.get('site-auth');
+  const isAuthenticated = authCookie?.value === 'authenticated';
+  if (isAuthenticated && url.pathname === '/login') {
+    url.pathname = '/';
+    return NextResponse.redirect(url);
+  }
 
-  if (authCookie?.value !== 'authenticated') {
+  if (!isAuthenticated && url.pathname !== '/login') {
     url.pathname = '/login';
     return NextResponse.redirect(url);
   }

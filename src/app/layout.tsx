@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { cookies } from 'next/headers';
 import './globals.scss';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -13,18 +14,27 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const isAuthenticated = cookieStore.get('site-auth')?.value === 'authenticated';
+
   return (
     <html lang="es">
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <FlowerSystem />
+        {isAuthenticated ? (
+          <>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <FlowerSystem />
+          </>
+        ) : (
+          <main>{children}</main>
+        )}
       </body>
     </html>
   );
