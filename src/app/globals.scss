@@ -52,12 +52,12 @@ h1 {
   font-family: var(--font-script);
 
   @include heading;
-  font-size: $font-size-5xl;
-  margin-bottom: $space-6;
+  font-size: $font-size-4xl;
+  margin-bottom: $space-4;
   
   @include respond-md {
-    font-size: $font-size-4xl;
-    margin-bottom: $space-4;
+    font-size: $font-size-5xl;
+    margin-bottom: $space-6;
   }
 }
 
@@ -66,12 +66,12 @@ h2 {
   color: $primary !important;
 
   @include heading;
-  font-size: $font-size-6xl;
-  margin-bottom: $space-5;
+  font-size: $font-size-5xl;
+  margin-bottom: $space-4;
   
   @include respond-md {
-    font-size: $font-size-5xl;
-    margin-bottom: $space-4;
+    font-size: $font-size-6xl;
+    margin-bottom: $space-5;
   }
 }
 
@@ -79,11 +79,11 @@ h3 {
   font-family: var(--font-script);
 
   @include heading;
-  font-size: $font-size-3xl;
+  font-size: $font-size-2xl;
   margin-bottom: $space-4;
   
   @include respond-md {
-    font-size: $font-size-2xl;
+    font-size: $font-size-3xl;
   }
 }
 
@@ -92,7 +92,7 @@ h4 {
 
   @include heading;
   font-size: $font-size-2xl;
-  margin-bottom: $space-3;
+  margin-bottom: $space-1;
 }
 
 h5 {

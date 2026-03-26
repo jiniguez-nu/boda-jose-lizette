@@ -66,6 +66,9 @@ export default function RsvpForm() {
       <div className={styles.container}>
         <h2>{rsvpSection.title}</h2>
         <p className={styles.subtitle}>{rsvpSection.description}</p>
+        <p className={styles.subtitle}>{rsvpSection.description2}</p>
+        <p className={styles.subtitle}>{rsvpSection.description3}</p>
+        <p className={styles.subtitle}>{rsvpSection.description4}</p>
 
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <div className={styles.formGroup}>

@@ -3,7 +3,7 @@
 
 .rsvpWrapper {
   padding: $space-16 $space-4;
-  background-color: $white;
+  background: linear-gradient(135deg, rgba($primary, 0.15) 0%, rgba($accent, 0.1) 100%);
 
   @include respond-md {
     padding: $space-20 $space-6;
@@ -11,7 +11,9 @@
 
   .container {
     @include container;
-    max-width: 500px;
+    max-width: 600px;
+    background: rgba($white, 0.5);
+    padding: 32px;
   }
 
   h2 {
@@ -21,9 +23,9 @@
   }
 
   .subtitle {
-    text-align: center;
+    text-align: left;
     color: $gray-600;
-    margin-bottom: $space-12;
+    margin-bottom: $space-4;
     font-size: $font-size-lg;
   }
 

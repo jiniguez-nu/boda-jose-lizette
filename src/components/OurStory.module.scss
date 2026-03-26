@@ -68,14 +68,14 @@
     gap: $space-6;
 
     p {
-      font-size: $font-size-lg;
+      font-size: $font-size-base;
       line-height: $line-height-relaxed;
       color: $gray-700;
       text-align: center;
       margin: 0;
 
       @include respond-md {
-        font-size: $font-size-base;
+        font-size: $font-size-lg;
       }
     }
   }

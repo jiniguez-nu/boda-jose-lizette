@@ -4,7 +4,6 @@
 .gallery {
   position: relative;
   padding: $space-16 $space-4;
-  background-color: $gray-50;
   z-index: 2;
 
   @include respond-md {
@@ -24,7 +23,7 @@
   .description {
     text-align: center;
     color: $gray-600;
-    margin-bottom: $space-12;
+    margin-bottom: $space-2;
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
@@ -33,11 +32,11 @@
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: $space-4;
+    gap: $space-3;
 
     @include respond-md {
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: $space-3;
+      gap: $space-4;
     }
   }
 
@@ -105,12 +104,12 @@
   background: rgba($black, 0.9);
   z-index: $z-index-modal;
   @include flex-column-center;
-  gap: $space-6;
+  gap: $space-4;
   padding: $space-4;
   animation: fadeIn 300ms ease-out;
 
   @include respond-md {
-    gap: $space-4;
+    gap: $space-6;
   }
 }
 
@@ -141,14 +140,14 @@
 
 .modalContent {
   width: 100%;
-  max-width: 800px;
+  max-width: 90vw;
   aspect-ratio: 1;
   border-radius: $radius-lg;
   overflow: hidden;
   animation: zoomIn 300ms ease-out;
 
   @include respond-md {
-    max-width: 90vw;
+    max-width: 800px;
   }
 }
 

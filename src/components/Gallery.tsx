@@ -21,6 +21,7 @@ export default function Gallery() {
       <div className={styles.container}>
         <h2>{gallerySection.title}</h2>
         <p className={styles.description}>{gallerySection.description}</p>
+        <p className={styles.description}>{gallerySection.instructions}</p>
         
         {/* Galleria aqui*/}
         <GalleryCarousel setSelectedImage={setSelectedImage}/>

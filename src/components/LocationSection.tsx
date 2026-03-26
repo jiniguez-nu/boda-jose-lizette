@@ -10,7 +10,7 @@ export default function LocationSection() {
   const eventDate = '2026-05-30';
   const eventTime = '18:00';
   const eventTitle = 'Nuestra Boda';
-  const eventDescription = 'Te invitamos a celebrar nuestro amor en León, Guanajuato';
+  const eventDescription = 'Boda Lizette y José en León, Guanajuato';
   const eventLocation = 'León, Guanajuato, México';
   const googleMapsUrl = 'https://www.google.com/maps/place/Restaurante+bar+Sky+360%C2%B0%2B1/@21.1164828,-101.6632357,17z/data=!3m1!4b1!4m6!3m5!1s0x842bbf39289b567b:0x954bb927e234e10f!8m2!3d21.1164779!4d-101.6583648!16s%2Fg%2F11gn28rwlm!5m2!1e4!1e2?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D';
   // const mapEmbedUrl =
@@ -43,58 +43,59 @@ export default function LocationSection() {
 
   return (
     <section id="location" className={styles.location}>
-      <h2>{locationSection.title}</h2>
-      <div className={styles.container}>
-        <div className={styles.content}>
-          <div className={styles.info}>
-            <div className={styles.dateTime}>
-              <h3>{locationSection.date}</h3>
-              <p>{locationSection.time}</p>
+      <div className={styles.overlay}>
+        <h2>{locationSection.title}</h2>
+        <div className={styles.container}>
+          <div className={styles.content}>
+            <div className={styles.info}>
+              <div className={styles.dateTime}>
+                <h3>{locationSection.date} {locationSection.time}</h3>
+              </div>
+
+              <div className={styles.address}>
+                <h3>{locationSection.location}</h3>
+              </div>
+
+              <div className={styles.buttons}>
+                <a
+                  href={createGoogleCalendarLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.button}
+                >
+                  📅 Agregar a calendario Google
+                </a>
+                <a
+                  href={createAppleCalendarLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.button}
+                >
+                  📱 Agregar a calendario Apple
+                </a>
+                <a
+                  href={googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.button}
+                >
+                  📍 {locationSection.googleMaps}
+                </a>
+              </div>
             </div>
 
-            <div className={styles.address}>
-              <h3>{locationSection.location}</h3>
-            </div>
-
-            <div className={styles.buttons}>
-              <a
-                href={createGoogleCalendarLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.button}
-              >
-                📅 Google Calendar
-              </a>
-              <a
-                href={createAppleCalendarLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.button}
-              >
-                📱 Apple Calendar
-              </a>
-              <a
-                href={googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.button}
-              >
-                {locationSection.googleMaps}
-              </a>
-            </div>
+            {/* <div className={styles.mapContainer}>
+              <iframe
+                src={mapEmbedUrl}
+                width="100%"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div> */}
           </div>
-
-          {/* <div className={styles.mapContainer}>
-            <iframe
-              src={mapEmbedUrl}
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen={false}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div> */}
         </div>
       </div>
     </section>

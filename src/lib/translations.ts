@@ -19,10 +19,11 @@ export const translations = {
 
   // Location & Date Section
   locationSection: {
-    title: 'Ubicación y Fecha',
+    title: 'Fecha y Ubicación',
     date: '30 de Mayo, 2026',
     time: '18:00 hrs',
-    location: 'León, Guanajuato, México',
+    locationName: '',
+    location: 'Sky360+1, Blvd. Adolfo López Mateos 1702, Col. Parque Manzanares, 37320, León, Guanajuato, México',
     mapTitle: 'Ubicación del Evento',
     addToCalendar: 'Agregar al Calendario',
     googleMaps: 'Ver en Google Maps',
@@ -42,30 +43,35 @@ export const translations = {
   // Gift Registry Section
   giftSection: {
     title: 'Mesa de Regalos',
-    description: 'Tu presencia es suficiente para hacernos felices.',
-    details: 'Sin embargo, si deseas hacer un regalo, puedes encontrar nuestras opciones en las tiendas asociadas. Lo más importante para nosotros es compartir este día contigo.',
+    description: 'Su presencia es suficiente para hacernos felices.',
+    details: 'Sin embargo, si desean hacer un regalo, pueden encontrar nuestras opciones preferidas en el siguiente link:',
+    postDetails: 'Lo más importante para nosotros es compartir este día con ustedes, muchas gracias!',
   },
 
   // Gallery Section
   gallerySection: {
     title: 'Galería de Fotos',
-    description: 'Momentos especiales de nuestra vida juntos',
+    description: 'Momentos especiales de nuestra vida juntos.',
+    instructions: '* Hagan click en la imágen para ver en pantalla completa.'
   },
 
   // RSVP Section
   rsvpSection: {
     title: 'Confirmar Asistencia',
-    description: 'Por favor confirma tu asistencia antes del 10 de Mayo de 2026',
+    description: 'Aquí pueden confirmar su asistencia! Recuerden que es un petite comité, por lo que los lugares son limitados, solo confirmen si están dispuestos a asistir.',
+    description2: '* Usen el campo de "Restricciones Dietéticas" para decirnos si hay algo en particular que no puedan comer, para transmitirlo al equipo de catering del evento.',
+    description3: '* Si lo desean también pueden darnos un mensaje motivador, desmotivador, chiste o saludo en el campo "Mensaje para los novios"',
+    description4: 'Por favor confirmen su asistencia antes del 10 de Mayo de 2026.',
     form: {
       firstName: 'Nombre',
       firstName_placeholder: 'Tu nombre',
       lastName: 'Apellido',
       lastName_placeholder: 'Tu apellido',
-      dietaryRestrictions: 'Restricciones Dietéticas (Opcional)',
+      dietaryRestrictions: 'Restricciones Dietéticas',
       dietaryRestrictions_placeholder: 'Ej: vegetariano, sin gluten, etc.',
-      message: 'Mensaje para los Novios (Opcional)',
+      message: 'Mensaje para los Novios',
       message_placeholder: 'Máximo 500 caracteres...',
-      submit: 'Enviar Confirmación',
+      submit: 'Si! Ahí estaremos!',
       submitting: 'Enviando...',
       success: '¡Gracias por confirmar tu asistencia!',
       error: 'Hubo un error al procesar tu confirmación. Por favor intenta de nuevo.',
