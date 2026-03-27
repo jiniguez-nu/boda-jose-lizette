@@ -11,9 +11,6 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Fallback for testing (creates a test account)
-let testTransporter = transporter;
-
 export async function getTransporter() {
   // If credentials are not set, create a test account
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {

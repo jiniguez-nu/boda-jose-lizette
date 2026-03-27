@@ -19,15 +19,27 @@ export const translations = {
 
   // Location & Date Section
   locationSection: {
-    title: 'Fecha y Ubicación',
+    title: 'Información del evento',
+    subtitle: 'Evento',
     date: '30 de Mayo, 2026',
     time: '18:00 hrs',
     locationName: '',
-    location: 'Sky360+1, Blvd. Adolfo López Mateos 1702, Col. Parque Manzanares, 37320, León, Guanajuato, México',
+    location: 'Sky360+1 (Piso 15 del hotel Stadium)',
+    locationAddress: 'Blvd. Adolfo López Mateos 1702, Col. Parque Manzanares, 37320, León, Guanajuato, México',
     mapTitle: 'Ubicación del Evento',
     addToCalendar: 'Agregar al Calendario',
     googleMaps: 'Ver en Google Maps',
     directions: 'Obtener Direcciones',
+  },
+
+  // Location Columns
+  foodSection: {
+    title: 'Alimentos',
+    description: 'Disfrutaremos de un delicioso menú de 3 tiempos en el lugar con la mejor vista 360° de León!' 
+  },
+  scheduleSection: {
+    title: 'Agenda',
+    desciption: 'El evento tendrá una duración de 5 hrs.'
   },
 
   // Our Story Section
@@ -45,7 +57,7 @@ export const translations = {
     title: 'Mesa de Regalos',
     description: 'Su presencia es suficiente para hacernos felices.',
     details: 'Sin embargo, si desean hacer un regalo, pueden encontrar nuestras opciones preferidas en el siguiente link:',
-    postDetails: 'Lo más importante para nosotros es compartir este día con ustedes, muchas gracias!',
+    postDetails: 'Muchas gracias!',
   },
 
   // Gallery Section

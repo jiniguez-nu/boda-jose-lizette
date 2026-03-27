@@ -3,44 +3,41 @@
 
 .location {
   position: relative;
-  min-width: 100%;
-  min-height: 600px;
-  background-image: url("/sky360-3.png");
-  background-size: cover;
-  background-position: center;
-  background-color: rgba(255, 255, 255, 0.3);
-  background-blend-mode: darken;
-  background-color: $gray-50;
   z-index: 2;
 
+  .bannerContainer {
+    min-width: 100%;
+    min-height: 580px;
+    background-image: url("/sky360-3.png");
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: darken;
+    background-color: $gray-50;
+  }
   .container {
     @include container;
-    max-width: 960px;
-  }
-
-  .overlay {
-    position: absolute;
-    background-color: (rgba(255, 255, 255, 0.4));
+    display: block;
+    position: relative;
     width: 100%;
-    min-height: inherit;
-    padding: $space-1 $space-4;
-    z-index: 4;
-
-    @include respond-lg {
-      padding: 0 $space-6;
+    min-width: 100%;
+    height: max-content;
+    background-color: rgba(249, 248, 246, 0.7);
+    @media (max-width: 1024px) {
+      padding: 0;
     }
   }
 
   h2 {
     text-align: center;
     margin-top: clamp(
-  16px,
-  calc((2140px - 100vw) * (100 / 576)),
-  120px
-);
+      16px,
+      calc((2140px - 100vw) * (100 / 576)),
+      120px
+    );
     margin-bottom: $space-12;
     color: $black;
-    font-size: $font-size-5xl;
+    background-color: rgba(255, 255, 255, 0.7);
+    
 
     @include tablet-and-down {
       margin-top: clamp(
@@ -59,9 +56,14 @@
     text-align: center;
     align-items: center;
     margin: 0 auto;
+    padding-left: 13%;
     width: 80%;
+    max-width: 1024px;
     min-height: inherit;
+
     @include tablet-and-down {
+      width: 100%;
+      padding: 0;
       grid-template-columns: 1fr;
       gap: $space-6;
     }
@@ -69,7 +71,17 @@
 
   .info {
     @include flex-column;
+    width: 60%;
+    text-align: left;
     gap: $space-1;
+    color: $white;
+    margin-top: 16px;
+    @media (max-width: 1024px) {
+      width: 100%;
+    }
+    h4 {
+      color: $white;
+    }
   }
 
   .dateTime {
@@ -127,17 +139,21 @@
   .button {
     @include button-base;
     padding: $space-3 $space-6;
-    background-color: rgba(255, 255, 255, 0.3);
+    max-width: 240px;
+    margin: 4px 0;
+    background-color: rgba(255, 255, 255, 0.9);
     color: $primary;
     font-size: $font-size-base;
     text-decoration: none;
+    justify-content: left;
     transition: all $transition-normal;
     border-radius: $radius-md;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
 
     &:hover {
       background-color: $primary-dark;
       transform: translateY(-2px);
-      box-shadow: $shadow-md;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
     }
 
     &:focus {
@@ -147,6 +163,12 @@
 
     &:active {
       transform: translateY(0);
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+      margin-right: 8px;
     }
   }
 
@@ -162,6 +184,167 @@
 
     iframe {
       border: none !important;
+    }
+  }
+}
+
+$section-amount: 3;
+// Try messing with the rotate value
+$section-rotate: 12;
+
+.columnContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transform: translate3d(0, 0, 0);
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    width: 100% + ($section-rotate * 2);
+    margin-left: percentage($section-rotate) * -.01;
+  }
+  
+  section:hover {
+    flex: 2;
+    min-height: fit-content;
+
+    .columnContent {
+      display: block;
+    }
+    span {
+      display: none;
+    }
+    &:after {
+      opacity: .8;
+    }
+    article {
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        opacity .2s .2s,
+        transform .2s .2s;
+      @media (min-width: 1024px) {
+        transform: 
+          translateY(0)
+          skewX(-#{$section-rotate}deg); 
+      }
+    }
+  }
+  section {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    min-height: 20vh;
+    overflow: hidden;
+    z-index: 1;
+    transition: 
+      flex-grow .2s,
+      opacity .2s;
+    &:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: cover;
+      transition:
+        transform .2s,
+        width .2s;
+      
+      @media (max-width: 1024px) {
+        left: 0;
+      }
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(33, 33, 33, 0.3);
+      opacity: 0;
+      transition: opacity .2s;
+    }
+
+    .columnContent {
+      display: none;
+    }
+    span {
+      margin: auto auto;
+    }
+    @media (min-width: 1024px) {
+      width: 20%;
+      height: 100vh;
+      margin-right: -1px;
+      transform: 
+        skewX(#{$section-rotate}deg)
+        translateZ(0);
+      &:before {
+        left: -100%;
+        width: 400%;
+        transform: skewX(-#{$section-rotate}deg);
+      }
+    }
+    @for $i from 1 through $section-amount {
+      &:nth-child(#{$i}) {
+        &:before {
+          background-color: darken($primary, $i * 5);
+        }
+      }
+    }
+
+    h3 {
+      font-family: var(--font-script);
+      font-size: $font-size-5xl;
+    }
+    h5 {
+      color: $gray-500;
+      margin-bottom: 8px;
+    }
+    ul {
+      padding-left: 16px;
+      margin-bottom: 0;
+
+      li {
+        line-height: 1;
+        margin-bottom: 2px;
+      }
+    }
+  }
+
+  article {
+    position: relative;
+    padding: 24px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: white;
+    z-index: 1;
+    transition:
+      opacity .2s,
+      transform .2s;
+    
+    h3 {
+      position: relative;
+      color: $white;
+    }
+    @media (min-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      //justify-content: center;
+      position: absolute;
+      top: 0; right: 0; left: 0;
+      margin: auto;
+      opacity: 0.6;
+      transform: 
+        translateY(24px)
+        skewX(-#{$section-rotate}deg);
+    }
+    @media (min-width: 1024px) {
+      h3 {
+        right: 40px;
+      }
     }
   }
 }
