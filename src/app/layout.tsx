@@ -4,6 +4,7 @@ import './globals.scss';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FlowerSystem from '@/components/FlowerSystem';
+import AudioPlayer from '@/components/AudioPlayer';
 
 export const metadata: Metadata = {
   title: 'Nos Casamos | Invitación',
@@ -30,6 +31,7 @@ export default async function RootLayout({
             <Header />
             <main>{children}</main>
             <Footer />
+            <AudioPlayer />
             <FlowerSystem />
           </>
         ) : (
