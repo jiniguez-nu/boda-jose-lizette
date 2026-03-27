@@ -97,7 +97,7 @@ export const translations = {
 
   // Footer
   footer: {
-    copyright: '© 2026 Nuestra Boda. Todos los derechos reservados.',
+    copyright: '© 2026 José M Iñiguez M. Todos los derechos reservados.',
     designedWith: 'Hecho con 💕',
     privacyNote: 'Este sitio es privado y solo es accesible a los invitados.',
   },
