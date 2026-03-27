@@ -116,10 +116,7 @@ export default function LocationSection() {
                   <li>Café Americano</li>
                 </ul>
                 <ul>
-                  <li>Barra libre de refrescos surtidos (Todo el evento)</li>
-                </ul>
-                <ul>
-                  <li>Barra libre de bebidas alcoholicas (de 3 a tbd horas)</li>
+                  <li>Barra libre de refrescos y bebidas surtidos (Todo el evento)</li>
                 </ul>
                 </div>
                 <span>apunta (PC) o tap (móvil) para ver</span>
@@ -131,8 +128,8 @@ export default function LocationSection() {
                 <div className={`${styles.info} ${styles.columnContent}`}>
                 <p className={styles.columnContent}>{translations.scheduleSection.desciption}</p>
                 <h4>18:30 Hrs:</h4> <p>Recepción de invitados</p>
-                <h4>19:00 Hrs:</h4> <p>Inicio de la ceremonia</p>
-                <h4>20:00 Hrs:</h4> <p>Felicitaciones, Fotos, Charla, etc.</p>
+                <h4>19:00 Hrs:</h4> <p>Inicio de la Ceremonia Civíl</p>
+                <h4>20:00 Hrs:</h4> <p>Felicitaciones, Fotos, etc.</p>
                 <h4>21:00 Hrs:</h4> <p>Inicia la Cena</p>
                 <h4>22:00 - 23:59 Hrs:</h4> <p>Continúa el convivio</p>
                 </div>

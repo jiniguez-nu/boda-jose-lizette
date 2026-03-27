@@ -70,10 +70,10 @@ export const translations = {
   // RSVP Section
   rsvpSection: {
     title: 'Confirmar Asistencia',
-    description: 'Aquí pueden confirmar su asistencia! Recuerden que es un petite comité, por lo que los lugares son limitados, solo confirmen si están dispuestos a asistir.',
+    description: 'Aquí pueden confirmar su asistencia! Recuerden que es un petite comité, por lo que les pedimos confirmar su asistencia antes del 10 de Mayo de 2026.',
     description2: '* Usen el campo de "Restricciones Dietéticas" para decirnos si hay algo en particular que no puedan comer, para transmitirlo al equipo de catering del evento.',
     description3: '* Si lo desean también pueden darnos un mensaje motivador, desmotivador, chiste o saludo en el campo "Mensaje para los novios"',
-    description4: 'Por favor confirmen su asistencia antes del 10 de Mayo de 2026.',
+    description4: '',
     form: {
       firstName: 'Nombre',
       firstName_placeholder: 'Tu nombre',
