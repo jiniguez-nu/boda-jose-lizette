@@ -10,9 +10,9 @@ export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   // Mockup gallery images
-  const images = Array.from({ length: 8 }, (_, i) => ({
+  const images = Array.from({ length: 12 }, (_, i) => ({
     id: i + 1,
-    src: `https://images.unsplash.com/photo-${1600000000000 + i * 100000}?w=500&h=500&fit=crop`,
+    src: `/photo-${i}.jpeg`,
     alt: `Foto de la pareja ${i + 1}`,
   }));
 
@@ -25,6 +25,15 @@ export default function Gallery() {
         
         {/* Galleria aqui*/}
         <GalleryCarousel setSelectedImage={setSelectedImage}/>
+        <div className={styles.buttonWrapper}>
+          <button
+            type="submit"
+            onClick={()=>setSelectedImage(0)}
+            className={styles.submitButton}
+          >
+            Abrir galería
+          </button>
+        </div>
         {/* <div className={styles.grid}>
           {images.map((image, index) => (
             <div
@@ -70,7 +79,7 @@ export default function Gallery() {
           </button>
           <div className={styles.modalContent}>
             <div className={styles.modalImagePlaceholder}>
-              <div className={styles.placeholderText}>Foto {selectedImage + 1}</div>
+              <img src={images[selectedImage].src} />
             </div>
           </div>
           <div className={styles.navigation}>
