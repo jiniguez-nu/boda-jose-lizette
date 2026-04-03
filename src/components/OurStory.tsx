@@ -1,6 +1,6 @@
 'use client';
 
-import { useScroll, useTransform, motion } from 'framer-motion';
+import { useScroll, useTransform, motion, useSpring } from 'framer-motion';
 import { useRef } from 'react';
 import styles from './OurStory.module.scss';
 import { translations } from '@/lib/translations';
@@ -13,12 +13,17 @@ export default function OurStory() {
     offset: ['start end', 'end start'],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const rawY = useTransform(scrollYProgress, [0, 1], [150, -150]);
+
+const y = useSpring(rawY, {
+  stiffness: 50,
+  damping: 20,
+});
 
   return (
     <section id="story" ref={ref} className={styles.story}>
       <div className={styles.backgroundContainer}>
-        <motion.div className={styles.backgroundImage} style={{ y }} />
+        <motion.div className={styles.backgroundImage} style={{ y, scaleX: -1 }} />
         <div className={styles.overlay} />
       </div>
 

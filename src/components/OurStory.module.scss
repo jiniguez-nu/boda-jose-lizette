@@ -17,6 +17,7 @@
     right: 0;
     bottom: 0;
     overflow: hidden;
+    height: 105%;
   }
 
   .backgroundImage {
@@ -26,10 +27,11 @@
     right: 0;
     bottom: 0;
     background: linear-gradient(135deg, rgba($primary, 0.15) 0%, rgba($accent, 0.1) 100%),
-      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="dot" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="2" fill="%23a89968" opacity="0.1"/></pattern></defs><rect width="1200" height="800" fill="white"/><rect width="1200" height="800" fill="url(%23dot)"/></svg>');
-    background-size: cover;
+      url('/photo-6.jpeg');
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll;
     will-change: transform;
     z-index: 1;
   }
@@ -53,7 +55,7 @@
 
   .content {
     max-width: 700px;
-    margin: 0 auto;
+    margin: 4.5rem auto;
 
     h2 {
       text-align: center;

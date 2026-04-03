@@ -1,5 +1,7 @@
 @use '@/styles/variables.scss' as *;
 @use '@/styles/mixins.scss' as *;
+@use 'sass:color';
+@use 'sass:math';
 
 .location {
   position: relative;
@@ -200,7 +202,7 @@ $section-rotate: 12;
   @media (min-width: 1024px) {
     flex-direction: row;
     width: 100% + ($section-rotate * 2);
-    margin-left: percentage($section-rotate) * -.01;
+    margin-left: $section-rotate * -1%;
   }
   
   section:hover {
@@ -288,7 +290,7 @@ $section-rotate: 12;
     @for $i from 1 through $section-amount {
       &:nth-child(#{$i}) {
         &:before {
-          background-color: darken($primary, $i * 5);
+          background-color: color.adjust($primary, $lightness: -$i * 5%);
         }
       }
     }
