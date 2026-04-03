@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export const rsvpFormSchema = z.object({
+  timestamp: z.string(),
   firstName: z
     .string()
     .min(1, { message: 'El nombre es requerido' })

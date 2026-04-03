@@ -7,9 +7,19 @@ import { rsvpFormSchema, type RSVPFormData } from '@/lib/validation';
 import styles from './RsvpForm.module.scss';
 import { translations } from '@/lib/translations';
 
-export default function RsvpForm() {
+type TGuestProps = {
+    guest: {
+      Nombre1: string,
+      andSymbol: string,
+      Nombre2: string
+    }
+  }
+export default function RsvpForm({guest}: TGuestProps) {
+
+  const GOOGLE_SCRIPT_URL = `https://script.google.com/macros/s/${process.env.NEXT_PUBLIC_CONFIRMATION_API}/exec`;
   const { rsvpSection } = translations;
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setIsSubmited] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<{
     type: 'success' | 'error';
     message: string;
@@ -30,27 +40,30 @@ export default function RsvpForm() {
     setSubmitMessage(null);
 
     try {
-      const response = await fetch('/api/rsvp', {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
+        mode: 'no-cors', // 🔥 IMPORTANTE
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          secret: process.env.NEXT_PUBLIC_MY_SUPER_SECRET
+        }),
       });
 
-      if (!response.ok) {
-        throw new Error('Error sending RSVP');
-      }
+      // ⚠️ con no-cors no puedes leer response.ok
+      // asumimos éxito si no truena
 
-      const result = await response.json();
       setSubmitMessage({
         type: 'success',
         message: rsvpSection.form.success,
       });
+
       reset();
 
-      // Clear message after 5 seconds
       setTimeout(() => setSubmitMessage(null), 5000);
+
     } catch (error) {
       setSubmitMessage({
         type: 'error',
@@ -58,6 +71,7 @@ export default function RsvpForm() {
       });
     } finally {
       setIsSubmitting(false);
+      setIsSubmited(true);
     }
   };
 
@@ -72,6 +86,7 @@ export default function RsvpForm() {
 
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <div className={styles.formGroup}>
+            <input type="hidden" value={new Date().toISOString()} {...register('timestamp')} />
             <label htmlFor="firstName">{rsvpSection.form.firstName}</label>
             <input
               id="firstName"
@@ -79,6 +94,8 @@ export default function RsvpForm() {
               placeholder={rsvpSection.form.firstName_placeholder}
               {...register('firstName')}
               aria-invalid={errors.firstName ? 'true' : 'false'}
+              disabled={true}
+              value={guest.Nombre1}
             />
             {errors.firstName && (
               <span className={styles.error}>{errors.firstName.message}</span>
@@ -93,6 +110,8 @@ export default function RsvpForm() {
               placeholder={rsvpSection.form.lastName_placeholder}
               {...register('lastName')}
               aria-invalid={errors.lastName ? 'true' : 'false'}
+              disabled={true}
+              value={guest.Nombre2}
             />
             {errors.lastName && (
               <span className={styles.error}>{errors.lastName.message}</span>
@@ -142,7 +161,7 @@ export default function RsvpForm() {
 
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || submitted}
             className={styles.submitButton}
           >
             {isSubmitting ? rsvpSection.form.submitting : rsvpSection.form.submit}

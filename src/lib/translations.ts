@@ -45,7 +45,7 @@ export const translations = {
   // Our Story Section
   storySection: {
     title: 'Nuestra Historia',
-    content: `Nuestra historia comenzó en un día ordinario que se convirtió en extraordinario cuando nuestras vidas se cruzaron. 
+    content: `Nuestra historia comenzó en un día ordinario que se convirtió en extraordinario cuando nuestras vidas se cruzaron. \n\n
     
     Desde ese primer momento, supimos que algo especial era el comienzo de una aventura hermosa. A lo largo de los años, hemos compartido risas, sueños y momentos que han tejido los hilos de nuestro amor.
     
@@ -75,10 +75,10 @@ export const translations = {
     description3: '* Si lo desean también pueden darnos un mensaje motivador, desmotivador, chiste o saludo en el campo "Mensaje para los novios"',
     description4: '',
     form: {
-      firstName: 'Nombre',
+      firstName: 'Invitado',
       firstName_placeholder: 'Tu nombre',
-      lastName: 'Apellido',
-      lastName_placeholder: 'Tu apellido',
+      lastName: 'Acompañante',
+      lastName_placeholder: 'Nombre de tu Acompañante',
       dietaryRestrictions: 'Restricciones Dietéticas',
       dietaryRestrictions_placeholder: 'Ej: vegetariano, sin gluten, etc.',
       message: 'Mensaje para los Novios',
