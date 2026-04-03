@@ -10,7 +10,9 @@ export default function GiftSection() {
         <h2>{giftSection.title}</h2>
 
         <div className={styles.card}>
-          <div className={styles.icon}>🎁</div>
+          <div className={styles.icon}>
+            <img src={'/freepik_gift_white.png'} />
+          </div>
           <h3>{giftSection.description}</h3>
           <p>{giftSection.details}</p>
           <a href='https://www.amazon.com.mx/wedding/guest-view/3T8ZPC8Q6IW0F' target='__blank'>Mesa de regalos de Amazon</a>
