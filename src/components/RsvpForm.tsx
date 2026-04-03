@@ -6,10 +6,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { rsvpFormSchema, TGuestProps, type RSVPFormData } from '@/lib/validation';
 import styles from './RsvpForm.module.scss';
 import { translations } from '@/lib/translations';
+import { save } from '@/app/login/actions';
 
 export default function RsvpForm({guest}: TGuestProps) {
 
-  const GOOGLE_SCRIPT_URL = `https://script.google.com/macros/s/${process.env.NEXT_PUBLIC_CONFIRMATION_API}/exec`;
   const { rsvpSection } = translations;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setIsSubmited] = useState(false);
@@ -33,29 +33,24 @@ export default function RsvpForm({guest}: TGuestProps) {
     setSubmitMessage(null);
 
     try {
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors', // 🔥 IMPORTANTE
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...data,
-          secret: process.env.NEXT_PUBLIC_MY_SUPER_SECRET
-        }),
-      });
+      const response = await save(data);
 
-      // ⚠️ con no-cors no puedes leer response.ok
-      // asumimos éxito si no truena
+      if (response) {
+        setSubmitMessage({
+          type: 'success',
+          message: rsvpSection.form.success,
+        });
 
-      setSubmitMessage({
-        type: 'success',
-        message: rsvpSection.form.success,
-      });
+        reset();
 
-      reset();
-
-      setTimeout(() => setSubmitMessage(null), 5000);
+        setTimeout(() => setSubmitMessage(null), 5000);
+        setIsSubmited(true);
+      } else {
+        setSubmitMessage({
+          type: 'error',
+          message: rsvpSection.form.error,
+        });
+      }
 
     } catch (error) {
       setSubmitMessage({
@@ -64,7 +59,6 @@ export default function RsvpForm({guest}: TGuestProps) {
       });
     } finally {
       setIsSubmitting(false);
-      setIsSubmited(true);
     }
   };
 

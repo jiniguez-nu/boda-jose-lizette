@@ -1,6 +1,7 @@
 'use server'
 
-import { validateGuest } from '@/lib/auth';
+import { saveGuest, validateGuest } from '@/lib/auth';
+import { RSVPFormData } from '@/lib/validation';
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
@@ -25,3 +26,12 @@ export async function login(formData: FormData) {
   redirect('/')
 }
 
+export async function save(data: RSVPFormData) {
+  const res = await saveGuest(data);
+
+  if (!res.success) {
+    // throw new Error('Invalid token');
+    return false
+  }
+  return true;
+}
