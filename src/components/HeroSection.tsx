@@ -1,14 +1,17 @@
+import { TGuestProps } from '@/lib/validation';
 import styles from './HeroSection.module.scss';
 import { translations } from '@/lib/translations';
 
-export default function HeroSection() {
+export default function HeroSection({guest}: TGuestProps) {
   const { hero } = translations;
 
   return (
     <section id="home" className={styles.hero}>
       <div className={styles.content}>
         <p>{hero.subtitle}</p>
-        <br />
+        <span>
+        {`${guest.Nombre1} ${guest.andSymbol} ${guest.Nombre2}`}
+        </span>
         <p>{hero.subtitle2}</p>
         <h1>{hero.title}</h1>
         <div className={styles.scrollIndicator}>

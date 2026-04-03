@@ -3,17 +3,10 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { rsvpFormSchema, type RSVPFormData } from '@/lib/validation';
+import { rsvpFormSchema, TGuestProps, type RSVPFormData } from '@/lib/validation';
 import styles from './RsvpForm.module.scss';
 import { translations } from '@/lib/translations';
 
-type TGuestProps = {
-    guest: {
-      Nombre1: string,
-      andSymbol: string,
-      Nombre2: string
-    }
-  }
 export default function RsvpForm({guest}: TGuestProps) {
 
   const GOOGLE_SCRIPT_URL = `https://script.google.com/macros/s/${process.env.NEXT_PUBLIC_CONFIRMATION_API}/exec`;

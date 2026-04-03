@@ -28,3 +28,10 @@ export const rsvpFormSchema = z.object({
 });
 
 export type RSVPFormData = z.infer<typeof rsvpFormSchema>;
+export type TGuestProps = {
+  guest: {
+    Nombre1: string,
+    andSymbol: string,
+    Nombre2: string
+  }
+}

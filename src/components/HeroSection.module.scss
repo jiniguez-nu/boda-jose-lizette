@@ -38,7 +38,7 @@
       font-family: var(--font-script);
       font-size: $font-size-4xl;
       color: $primary;
-      line-height: $line-height-relaxed;
+      line-height: $line-height-normal;
       margin-bottom: 0;
 
       @include respond-md {
@@ -47,6 +47,21 @@
 
       @media (max-width: 520px) {
         font-size: $font-size-3xl;
+      }
+    }
+
+    span {
+      font-family: var(--font-sans);
+      font-size: $font-size-2xl;
+      color: $primary;
+      line-height: $line-height-extreme;
+
+      @include respond-md {
+        font-size: $font-size-2xl;
+      }
+
+      @media (max-width: 520px) {
+        font-size: $font-size-xl;
       }
     }
   }

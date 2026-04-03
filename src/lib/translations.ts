@@ -11,7 +11,7 @@ export const translations = {
 
   // Hero Section
   hero: {
-    title: 'Nuestra Boda!',
+    title: 'En Nuestra Boda!',
     subtitle: 'Deseamos compartir el inicio de esta etapa de nuestra vida con las personas que más apreciamos y que han sido parte de nuestro camino.',
     subtitle2: 'Después de tantas historias juntos, llega el momento de celebrar una vez más...',
     scrollHint: 'Desplázate para más',

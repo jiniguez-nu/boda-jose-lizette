@@ -14,7 +14,7 @@ export default async function Home() {
   );
   return (
     <>
-      <HeroSection />
+      <HeroSection guest={guest}/>
       <LocationSection />
       <OurStory />
       <Gallery />
