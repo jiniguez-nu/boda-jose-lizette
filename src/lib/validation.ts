@@ -33,5 +33,6 @@ export type TGuestProps = {
     Nombre1: string,
     andSymbol: string,
     Nombre2: string
+    confirmed: string
   }
 }

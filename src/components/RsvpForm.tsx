@@ -6,17 +6,22 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { rsvpFormSchema, TGuestProps, type RSVPFormData } from '@/lib/validation';
 import styles from './RsvpForm.module.scss';
 import { translations } from '@/lib/translations';
-import { save } from '@/app/login/actions';
+import { confirmGuest, save } from '@/app/login/actions';
 
 export default function RsvpForm({guest}: TGuestProps) {
-
   const { rsvpSection } = translations;
+  const guestConfirmed = guest.confirmed === 'SI';
+  const initialSubmitted = guestConfirmed ? {
+    type: 'success' as any,
+    message: rsvpSection.form.success,
+  } : null;
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setIsSubmited] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<{
     type: 'success' | 'error';
     message: string;
-  } | null>(null);
+  } | null>(initialSubmitted);
 
   const {
     register,
@@ -34,17 +39,17 @@ export default function RsvpForm({guest}: TGuestProps) {
 
     try {
       const response = await save(data);
-
-      if (response) {
+      const saved = (await confirmGuest()).success;
+        
+      if (response && saved) {
         setSubmitMessage({
           type: 'success',
           message: rsvpSection.form.success,
         });
 
         reset();
-
-        setTimeout(() => setSubmitMessage(null), 5000);
         setIsSubmited(true);
+        
       } else {
         setSubmitMessage({
           type: 'error',
@@ -66,94 +71,104 @@ export default function RsvpForm({guest}: TGuestProps) {
     <section id="rsvp" className={styles.rsvpWrapper}>
       <div className={styles.container}>
         <h2>{rsvpSection.title}</h2>
-        <p className={styles.subtitle}>{rsvpSection.description}</p>
-        <p className={styles.subtitle}>{rsvpSection.description2}</p>
-        <p className={styles.subtitle}>{rsvpSection.description3}</p>
-        <p className={styles.subtitle}>{rsvpSection.description4}</p>
+        {!guestConfirmed && (<>
+          <p className={styles.subtitle}>{rsvpSection.description}</p>
+          <p className={styles.subtitle}>{rsvpSection.description2}</p>
+          <p className={styles.subtitle}>{rsvpSection.description3}</p>
+          <p className={styles.subtitle}>{rsvpSection.description4}</p>
 
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-          <div className={styles.formGroup}>
-            <input type="hidden" value={new Date().toISOString()} {...register('timestamp')} />
-            <label htmlFor="firstName">{rsvpSection.form.firstName}</label>
-            <input
-              id="firstName"
-              type="text"
-              placeholder={rsvpSection.form.firstName_placeholder}
-              {...register('firstName')}
-              aria-invalid={errors.firstName ? 'true' : 'false'}
-              disabled={true}
-              value={guest.Nombre1}
-            />
-            {errors.firstName && (
-              <span className={styles.error}>{errors.firstName.message}</span>
-            )}
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="lastName">{rsvpSection.form.lastName}</label>
-            <input
-              id="lastName"
-              type="text"
-              placeholder={rsvpSection.form.lastName_placeholder}
-              {...register('lastName')}
-              aria-invalid={errors.lastName ? 'true' : 'false'}
-              disabled={true}
-              value={guest.Nombre2}
-            />
-            {errors.lastName && (
-              <span className={styles.error}>{errors.lastName.message}</span>
-            )}
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="dietaryRestrictions">
-              {rsvpSection.form.dietaryRestrictions}
-              <span className={styles.optional}>({translations.common.optional})</span>
-            </label>
-            <input
-              id="dietaryRestrictions"
-              type="text"
-              placeholder={rsvpSection.form.dietaryRestrictions_placeholder}
-              {...register('dietaryRestrictions')}
-            />
-            {errors.dietaryRestrictions && (
-              <span className={styles.error}>{errors.dietaryRestrictions.message}</span>
-            )}
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="message">
-              {rsvpSection.form.message}
-              <span className={styles.optional}>({translations.common.optional})</span>
-            </label>
-            <textarea
-              id="message"
-              placeholder={rsvpSection.form.message_placeholder}
-              {...register('message')}
-              maxLength={500}
-            />
-            {errors.message && (
-              <span className={styles.error}>{errors.message.message}</span>
-            )}
-          </div>
-
-          {submitMessage && (
-            <div
-              className={`${styles.message} ${styles[submitMessage.type]}`}
-              role="alert"
-            >
-              {submitMessage.message}
+          <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+            <div className={styles.formGroup}>
+              <input type="hidden" value={new Date().toISOString()} {...register('timestamp')} />
+              <label htmlFor="firstName">{rsvpSection.form.firstName}</label>
+              <input
+                id="firstName"
+                type="text"
+                placeholder={rsvpSection.form.firstName_placeholder}
+                {...register('firstName')}
+                aria-invalid={errors.firstName ? 'true' : 'false'}
+                disabled={true}
+                value={guest.Nombre1}
+              />
+              {errors.firstName && (
+                <span className={styles.error}>{errors.firstName.message}</span>
+              )}
             </div>
-          )}
 
-          <button
-            type="submit"
-            disabled={isSubmitting || submitted}
-            className={styles.submitButton}
+            <div className={styles.formGroup}>
+              <label htmlFor="lastName">{rsvpSection.form.lastName}</label>
+              <input
+                id="lastName"
+                type="text"
+                placeholder={rsvpSection.form.lastName_placeholder}
+                {...register('lastName')}
+                aria-invalid={errors.lastName ? 'true' : 'false'}
+                disabled={true}
+                value={guest.Nombre2}
+              />
+              {errors.lastName && (
+                <span className={styles.error}>{errors.lastName.message}</span>
+              )}
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="dietaryRestrictions">
+                {rsvpSection.form.dietaryRestrictions}
+                <span className={styles.optional}>({translations.common.optional})</span>
+              </label>
+              <input
+                id="dietaryRestrictions"
+                type="text"
+                placeholder={rsvpSection.form.dietaryRestrictions_placeholder}
+                {...register('dietaryRestrictions')}
+              />
+              {errors.dietaryRestrictions && (
+                <span className={styles.error}>{errors.dietaryRestrictions.message}</span>
+              )}
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="message">
+                {rsvpSection.form.message}
+                <span className={styles.optional}>({translations.common.optional})</span>
+              </label>
+              <textarea
+                id="message"
+                placeholder={rsvpSection.form.message_placeholder}
+                {...register('message')}
+                maxLength={500}
+              />
+              {errors.message && (
+                <span className={styles.error}>{errors.message.message}</span>
+              )}
+            </div>
+
+            {submitMessage && (
+              <div
+                className={`${styles.message} ${styles[submitMessage.type]}`}
+                role="alert"
+              >
+                {submitMessage.message}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={isSubmitting || submitted}
+              className={styles.submitButton}
+            >
+              {isSubmitting ? rsvpSection.form.submitting : rsvpSection.form.submit}
+            </button>
+          </form>
+        </>)}
+        {(submitMessage && guestConfirmed) && (
+          <div
+            className={`${styles.message} ${styles[submitMessage.type]}`}
+            role="alert"
           >
-            {isSubmitting ? rsvpSection.form.submitting : rsvpSection.form.submit}
-          </button>
-        </form>
+            {submitMessage.message}
+          </div>
+        )}
       </div>
     </section>
   );

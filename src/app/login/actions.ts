@@ -35,3 +35,29 @@ export async function save(data: RSVPFormData) {
   }
   return true;
 }
+
+export async function confirmGuest() {
+  const cookieStore = await cookies();
+
+  const guestCookie = cookieStore.get('guest');
+
+  if (!guestCookie) {
+    console.error('no se encontró la cookie');
+    return { success: false };
+  }
+
+  const guest = JSON.parse(guestCookie.value);
+
+  // 👇 Modificas lo que necesitas
+  guest.confirmed = "SI";
+
+  // 👇 Reescribes la cookie completa
+  cookieStore.set('guest', JSON.stringify(guest), {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'lax',
+    path: '/',
+  });
+
+  return { success: true };
+}
