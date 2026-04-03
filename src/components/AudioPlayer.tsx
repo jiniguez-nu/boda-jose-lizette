@@ -70,7 +70,6 @@ export default function AudioPlayer() {
         ref={audioRef} 
         loop 
         preload="auto"
-        autoPlay
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
       >
