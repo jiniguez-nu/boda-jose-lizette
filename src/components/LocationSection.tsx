@@ -126,7 +126,7 @@ export default function LocationSection() {
                 <h3>{translations.foodSection.title}</h3>
                 <div className={`${styles.info} ${styles.columnContent}`}>
                 <p className={styles.columnContent}>{translations.foodSection.description}</p>
-                <h4>El menú incluye:</h4>
+                <h4>Menú:</h4>
                 <h5>- Entrada:</h5>
                 <ul>
                   <li>Crema de 4 quesos en pan de hogaza</li>
@@ -147,7 +147,10 @@ export default function LocationSection() {
                   <li>Café Americano</li>
                 </ul>
                 <ul>
-                  <li>Barra libre de refrescos y bebidas surtidos (Todo el evento)</li>
+                  <li>Barra libre de refrescos surtidos (Todo el evento)</li>
+                </ul>
+                <ul>
+                  <li>Barra libre de bebidas alcoholicas (Nacionales) de 8:30 PM a 11:30 PM</li>
                 </ul>
                 </div>
                 <span>apunta (PC) o tap (móvil) para ver</span>
@@ -160,9 +163,9 @@ export default function LocationSection() {
                 <p className={styles.columnContent}>{translations.scheduleSection.desciption}</p>
                 <h4>18:30 Hrs:</h4> <p>Recepción de invitados</p>
                 <h4>19:00 Hrs:</h4> <p>Inicio de la Ceremonia Civíl</p>
-                <h4>20:00 Hrs:</h4> <p>Felicitaciones, Fotos, etc.</p>
-                <h4>21:00 Hrs:</h4> <p>Inicia la Cena</p>
-                <h4>22:00 - 23:59 Hrs:</h4> <p>Continúa el convivio</p>
+                <h4>Post Ceremonia:</h4> <p>Felicitaciones, Fotos, etc.</p>
+                <h4>20:30 Hrs:</h4> <p>Inicia la Cena</p>
+                <h4>21:30 - 00:00 Hrs:</h4> <p>Continúa el convivio</p>
                 </div>
                 <span>apunta (PC) o tap (móvil) para ver</span>
               </article>
