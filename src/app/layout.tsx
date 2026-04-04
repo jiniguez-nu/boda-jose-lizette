@@ -25,6 +25,16 @@ export default async function RootLayout({
 
   return (
     <html lang="es">
+      <link 
+        rel='preload'
+        as='image'
+        href='/sky360-3.png'
+      />
+      <link 
+        rel='preload'
+        as='image'
+        href='/photo-6.jpeg'
+      />
       <body>
         {isAuthenticated ? (
           <>

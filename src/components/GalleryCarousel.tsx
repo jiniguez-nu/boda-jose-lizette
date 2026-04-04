@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import styles from './GalleryCarousel.module.scss';
 
 const DATA = [
@@ -27,15 +28,18 @@ export default function GalleryCarousel({ setSelectedImage }: { setSelectedImage
         style={{ ['--n' as any]: N }}
       >
         {DATA.map((id, i) => (
-          <img
+          <Image
             key={id}
             className={styles.card}
             src={`/photo-${i}.jpeg`}
             style={{ ['--i' as any]: i }}
-            alt="wedding photo"
+            alt={`wedding-photo-${i}`}
             onClick={() => setSelectedImage(i)}
             role="button"
             tabIndex={0}
+            priority
+            width={280}
+            height={400}
           />
         ))}
       </div>

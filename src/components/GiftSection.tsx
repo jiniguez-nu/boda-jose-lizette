@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './GiftSection.module.scss';
 import { translations } from '@/lib/translations';
 
@@ -11,7 +12,16 @@ export default function GiftSection() {
 
         <div className={styles.card}>
           <div className={styles.icon}>
-            <img src={'/freepik_gift_white.png'} />
+            <Image 
+              src={'/freepik_gift_white.png'} 
+              alt={`image-gift`}
+              priority
+              width={200}
+              height={200}
+              style={{
+                objectFit: 'cover',
+              }}
+            />
           </div>
           <h3>{giftSection.description}</h3>
           <p>{giftSection.details}</p>

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import styles from './LocationSection.module.scss';
 import { translations } from '@/lib/translations';
 
@@ -64,7 +65,17 @@ export default function LocationSection() {
                       rel="noopener noreferrer"
                       className={styles.button}
                     >
-                      <img src={"/btn-g-map.png"} />
+                      <Image 
+                        src={"/btn-g-map.png"}
+                        alt={`image-google-maps`}
+                        priority
+                        width={130}
+                        height={130}
+                        quality={95}
+                        style={{
+                          objectFit: 'cover',
+                        }}  
+                      />
                       {locationSection.googleMaps}
                     </a>
                     <a
@@ -73,7 +84,17 @@ export default function LocationSection() {
                       rel="noopener noreferrer"
                       className={styles.button}
                     >
-                      <img src={"/btn-g-calendar.png"} />
+                      <Image 
+                        src={"/btn-g-calendar.png"}
+                        alt={`image-google-calendar`}
+                        priority
+                        width={56}
+                        height={55}
+                        quality={95}
+                        style={{
+                          objectFit: 'cover',
+                        }}  
+                      />
                       Agregar a calendario Google
                     </a>
                     <a
@@ -82,7 +103,17 @@ export default function LocationSection() {
                       rel="noopener noreferrer"
                       className={styles.button}
                     >
-                      <img src={"/btn-a-calendar.png"} />
+                      <Image 
+                        src={"/btn-a-calendar.png"}
+                        alt={`image-apple-calendar`}
+                        priority
+                        width={85}
+                        height={85}
+                        quality={95}
+                        style={{
+                          objectFit: 'cover',
+                        }}  
+                      />
                       Agregar a calendario Apple
                     </a>
                   </div>

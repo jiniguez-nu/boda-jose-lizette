@@ -4,6 +4,7 @@ import { useState } from 'react';
 import styles from './Gallery.module.scss';
 import { translations } from '@/lib/translations';
 import GalleryCarousel from './GalleryCarousel';
+import Image from 'next/image';
 
 export default function Gallery() {
   const { gallerySection } = translations;
@@ -79,7 +80,18 @@ export default function Gallery() {
           </button>
           <div className={styles.modalContent}>
             <div className={styles.modalImagePlaceholder}>
-              <img src={images[selectedImage].src} />
+              <Image 
+                src={images[selectedImage].src}
+                alt={`image-${images[selectedImage].src.replace("/","")}`}
+                priority
+                width={600}
+                height={920}
+                quality={85}
+                style={{
+                  objectFit: 'cover',
+                }}
+              />
+              
             </div>
           </div>
           <div className={styles.navigation}>
