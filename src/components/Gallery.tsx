@@ -23,8 +23,7 @@ export default function Gallery() {
         <h2>{gallerySection.title}</h2>
         <p className={styles.description}>{gallerySection.description}</p>
         <p className={styles.description}>{gallerySection.instructions}</p>
-        
-        {/* Galleria aqui*/}
+
         <GalleryCarousel setSelectedImage={setSelectedImage}/>
         <div className={styles.buttonWrapper}>
           <button
@@ -35,29 +34,6 @@ export default function Gallery() {
             Abrir galería
           </button>
         </div>
-        {/* <div className={styles.grid}>
-          {images.map((image, index) => (
-            <div
-              key={image.id}
-              className={styles.imageWrapper}
-              onClick={() => setSelectedImage(index)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  setSelectedImage(index);
-                }
-              }}
-            >
-              <div className={styles.imagePlaceholder}>
-                <div className={styles.placeholderText}>Foto {image.id}</div>
-              </div>
-              <div className={styles.overlay}>
-                <span>👁️ Ver</span>
-              </div>
-            </div>
-          ))}
-        </div> */}
       </div>
 
       {selectedImage !== null && (

@@ -31,19 +31,6 @@ const y = useSpring(rawY, {
         <div className={styles.content}>
           <h2>{storySection.title}</h2>
           <div className={styles.text}>
-            {/* <p>Nos conocimos en un día de ocio, un día en el que ninguno de nosotros se imaginaba lo que el futuro tenía planeado para nosotros.
-              Ambos solitarios, cada uno en su casa, buscabamos alguien con quien platicar, fue entonces cuando en una aplicación llamada <a href='https://bumble.com/' target='_blank'>Bumble</a> coincidimos,
-              yo le di me gusta y a Liz le pidieron decidir si quería iniciar la conversación, Liz con gusto acepto al ver a ese muchacho tan guapo en las fotos 😉😉.
-            </p>
-            <p>
-              Así comenzamos a platicar y a conocernos, aunque el destino solo nos permitió vernos un par de veces en Guadalajara. Pronto nuestros caminos tomaron un destino diferente, Liz se mudó a Irapuato, 
-              Gto. y del encuentro solo quedó la amistad, hasta que unos meses mas tarde el destino decidió que yo debía trabajar en León, Gto. y en una llamada casual, para saludarnos, puesto que Liz estaba 
-              en Guadalajara,  descubrí que León estaba a solo 1 hra de Irapuato, y así acordamos a encontrarnos en León. 
-            </p>
-            <p>
-              Las visitas se fueron haciendo mas frecuentes, la amistad se convirtió en romance, dimos el siguiente paso, después el siguiente y el siguiente, las circunstancias nos llevaron a vivir juntos, 
-              luego a dormir en la misma habitación, nos conocimos muy bien, nos enojamos, nos aguantamos y comprobamos que estamos listos para el último paso de una relación, el juntos para siempre.
-            </p> */}
             <p>Todo empezó en un día bastante normal.<br />
               De esos en los que no tienes grandes planes y solo quieres distraerte un rato. Cada quien en su casa, cada quien en su mundo, pero con esa idea de conocer a alguien con quien platicar.</p>
 
