@@ -1,12 +1,13 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from './LocationSection.module.scss';
 import { translations } from '@/lib/translations';
 
 export default function LocationSection() {
   const { locationSection } = translations;
-
+  const [isSafariIOS, setIsSafariIOS] = useState(false);
   // Wedding details
   const eventDate = '2026-05-30';
   const eventTime = '18:00';
@@ -14,31 +15,67 @@ export default function LocationSection() {
   const eventDescription = 'Boda Lizette y José en León, Guanajuato';
   const eventLocation = 'Blvd. Adolfo López Mateos 1702, Col. Parque Manzanares, 37320, León, Guanajuato, México';
   const googleMapsUrl = 'https://www.google.com/maps/place/Restaurante+bar+Sky+360%C2%B0%2B1/@21.1164828,-101.6632357,17z/data=!3m1!4b1!4m6!3m5!1s0x842bbf39289b567b:0x954bb927e234e10f!8m2!3d21.1164779!4d-101.6583648!16s%2Fg%2F11gn28rwlm!5m2!1e4!1e2?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D';
+  
+  // Dentro de LocationSection
+const addToCalendar = () => {
+  // Fechas para .ics
+  const formatDate = (date: string, time: string) =>
+    `${date.replace(/-/g, '')}T${time.replace(/:/g, '')}00`;
 
-  // Create calendar link for Google Calendar
-  const createGoogleCalendarLink = () => {
-    const startDateTime = `${eventDate}T${eventTime}00`;
-    const endDateTime = `${eventDate}T23:5900`;
+  const start = formatDate(eventDate, eventTime);
+  const end = formatDate(eventDate, '23:59');
+
+  if (isSafariIOS) {
+    // Generar .ics para iOS/Safari
+    const now = new Date()
+      .toISOString()
+      .replace(/[-:]/g, '')
+      .split('.')[0] + 'Z';
+    const uid = `${Date.now()}@tuboda.com`;
+
+    const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Boda Lizette y Jose//ES
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:${uid}
+DTSTAMP:${now}
+DTSTART;TZID=America/Mexico_City:${start}
+DTEND;TZID=America/Mexico_City:${end}
+SUMMARY:${eventTitle}
+DESCRIPTION:${eventDescription}
+LOCATION:${eventLocation}
+END:VEVENT
+END:VCALENDAR`;
+
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    window.location.href = url; // iOS abre Calendar directamente
+
+  } else {
+    // Link directo a Google Calendar para otros dispositivos
+    const gStart = `${start.replace(/[-:]/g, '')}`;
+    const gEnd = `${end.replace(/[-:]/g, '')}`;
     const params = new URLSearchParams({
       text: eventTitle,
       details: eventDescription,
       location: eventLocation,
-      dates: `${startDateTime.replace(/[-:]/g, '')}/${endDateTime.replace(/[-:]/g, '')}`,
+      dates: `${gStart}/${gEnd}`,
     });
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&${params.toString()}`;
-  };
+    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&${params.toString()}`;
+    window.open(url, '_blank');
+  }
+};
 
-  // Create calendar link for Apple Calendar (iCal format)
-  const createAppleCalendarLink = () => {
-    const startDateTime = `${eventDate.replace(/-/g, '')}T${eventTime.replace(/:/g, '')}00`;
-    const params = new URLSearchParams({
-      text: eventTitle,
-      details: eventDescription,
-      location: eventLocation,
-      dates: startDateTime,
-    });
-    return `webcal://calendar.google.com/calendar/ics?${params.toString()}`;
+  const isSafari = () => {
+    const ua = navigator.userAgent;
+    const isSafariBrowser = /^((?!chrome|crios|firefox|fxios|edgios|edga).)*safari/i.test(ua);
+    const isAppleDevice = /iPad|iPhone|iPod|Macintosh/.test(ua);
+    return isSafariBrowser && isAppleDevice;
   };
+  useEffect(() => {
+    setIsSafariIOS(isSafari());
+  }, []);
 
   return (
     <section id="location" className={styles.location}>
@@ -77,13 +114,13 @@ export default function LocationSection() {
                       {locationSection.googleMaps}
                     </a>
                     <a
-                      href={createGoogleCalendarLink()}
+                      onClick={addToCalendar}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={styles.button}
                     >
                       <Image 
-                        src={"/btn-g-calendar.png"}
+                        src={isSafariIOS ? '/btn-a-calendar.png' : '/btn-g-calendar.png'}
                         alt={`image-google-calendar`}
                         priority
                         width={56}
@@ -93,26 +130,7 @@ export default function LocationSection() {
                           objectFit: 'cover',
                         }}  
                       />
-                      Agregar a calendario Google
-                    </a>
-                    <a
-                      href={createAppleCalendarLink()}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.button}
-                    >
-                      <Image 
-                        src={"/btn-a-calendar.png"}
-                        alt={`image-apple-calendar`}
-                        priority
-                        width={85}
-                        height={85}
-                        quality={95}
-                        style={{
-                          objectFit: 'cover',
-                        }}  
-                      />
-                      Agregar a calendario Apple
+                      {`Agregar a calendario ${isSafariIOS ? 'Apple' : 'Google'}`}
                     </a>
                   </div>
                 </div>
