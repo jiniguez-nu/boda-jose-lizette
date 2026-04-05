@@ -22,7 +22,14 @@ export async function login(formData: FormData) {
     sameSite: 'lax',
     path: '/',
   });
-  cookieStore.set('site-auth', 'authenticated', { maxAge: 60 * 60 * 24 * 30 }) // 30 days
+  cookieStore.set('site-auth', 'authenticated', { 
+    httpOnly: true,
+    secure: true,
+    sameSite: 'lax',
+    path: '/',
+    maxAge: 60 * 60 * 24,
+  }) // 30 days
+  
   redirect('/')
 }
 

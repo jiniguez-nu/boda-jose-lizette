@@ -19,13 +19,25 @@ export default function proxy(request: NextRequest) {
   const isAuthenticated = authCookie?.value === 'authenticated';
   if (isAuthenticated && url.pathname === '/login') {
     url.pathname = '/';
-    return NextResponse.redirect(url);
+    return NextResponse.redirect(url, {
+      headers: {
+        'Cache-Control': 'no-store',
+      },
+    });
   }
 
   if (!isAuthenticated && url.pathname !== '/login') {
     url.pathname = '/login';
-    return NextResponse.redirect(url);
+    return NextResponse.redirect(url, {
+      headers: {
+        'Cache-Control': 'no-store',
+      },
+    });
   }
 
-  return NextResponse.next();
+  return NextResponse.next({
+    headers: {
+      'Cache-Control': 'no-store',
+    },
+  });
 }
