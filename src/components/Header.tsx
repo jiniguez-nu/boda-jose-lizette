@@ -39,8 +39,8 @@ export default function Header() {
           {!isMenuOpen && (<h1 className="title-main">
             Laura Lizette <span>&</span> José María
           </h1>)}
-          <button onClick={() => scrollToSection('gift')}>{header.navGift}</button>
           <button onClick={() => scrollToSection('gallery')}>{header.navGallery}</button>
+          <button onClick={() => scrollToSection('gift')}>{header.navGift}</button>
           <button onClick={() => scrollToSection('rsvp')} className={styles.rsvpButton}>
             {header.navRsvp}
           </button>
