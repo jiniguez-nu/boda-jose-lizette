@@ -30,9 +30,6 @@ export default function Header() {
         </button>
 
         <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
-          {isMenuOpen && (<h1 className="title-main">
-            Laura Lizette <span>&</span> José María
-          </h1>)}
           <button onClick={() => scrollToSection('home')}>{header.navHome}</button>
           <button onClick={() => scrollToSection('location')}>{header.navLocation}</button>
           <button onClick={() => scrollToSection('story')}>{header.navStory}</button>
