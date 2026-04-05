@@ -5,7 +5,7 @@
   position: relative;
   min-height: 100vh;
   @include flex-column-center;
-  gap: $space-8;
+  gap: $space-4;
   padding: $space-12 $space-4;
   text-align: center;
   overflow: hidden;
@@ -51,10 +51,11 @@
     }
 
     span {
+      display: block;
       font-family: var(--font-sans);
       font-size: $font-size-2xl;
       color: $primary;
-      line-height: $line-height-extreme;
+      padding: 1.5rem 0;
 
       @include respond-md {
         font-size: $font-size-2xl;
@@ -138,5 +139,58 @@
   50% {
     transform: translateY(5px);
     opacity: 0.5;
+  }
+}
+.titleMain {
+  color: var(--color-text-dark);
+  font-size: 1.9rem;
+  line-height: 1.1;
+  font-family: var(--font-script);
+  margin: 0 auto;
+  font-weight: 700;
+
+  span {
+    color: var(--color-primary);
+    opacity: 0.9;
+  }
+
+  @media (min-width: 480px){
+    font-size: 2rem;
+  }
+
+  @media (min-width: 1024px){
+    font-size: 2.1rem;
+  }
+
+  @media (min-width: 1148px){
+    font-size: 2.2rem;
+  }
+}
+.divider {
+  display: flex;
+  width: auto;
+  height: auto;
+  align-items: center;
+  gap: 0px;
+
+  img {
+    width: 120px;
+    height: 40px;
+    object-fit: cover;
+  }
+  @media (max-width: 481px) {
+    img {
+      width: 80px;
+      height: 20px;
+      object-fit: cover;
+      margin-bottom: 16px;
+    }
+  }
+
+  @include respond-md {
+    img {
+      width: 150px;
+      height: 40px;
+    }
   }
 }

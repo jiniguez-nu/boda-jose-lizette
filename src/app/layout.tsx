@@ -7,7 +7,7 @@ import FlowerSystem from '@/components/FlowerSystem';
 import AudioPlayer from '@/components/AudioPlayer';
 
 export const metadata: Metadata = {
-  title: 'Nos Casamos | Invitación',
+  title: 'Boda José y Liz | Invitación',
   description: 'Te invitamos a celebrar nuestro amor',
   robots: {
     index: false,

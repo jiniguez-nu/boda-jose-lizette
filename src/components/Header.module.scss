@@ -11,6 +11,7 @@
 
   .container {
     @include container;
+    justify-content: center;
     @include flex-between;
     padding: $space-2;
     gap: $space-4;

@@ -45,6 +45,9 @@ export default function Header() {
             {header.navRsvp}
           </button>
         </nav>
+        <h1 className="title-main title-main--mobile">
+            Laura Lizette <span>&</span> José María
+          </h1>
       </div>
     </header>
   );
