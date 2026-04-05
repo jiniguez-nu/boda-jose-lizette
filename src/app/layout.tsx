@@ -35,6 +35,11 @@ export default async function RootLayout({
         as='image'
         href='/photo-6.jpeg'
       />
+      <link 
+        rel='preload'
+        as='image'
+        href='/bg-login.jpg'
+      />
       <body>
         {isAuthenticated ? (
           <>
