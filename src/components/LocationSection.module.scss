@@ -316,7 +316,7 @@ $section-rotate: 12;
 
   article {
     position: relative;
-    padding: 24px;
+    padding: 48px 24px;
     width: 100%;
     height: 100%;
     text-align: center;
@@ -332,6 +332,7 @@ $section-rotate: 12;
     }
     @media (min-width: 768px) {
       display: flex;
+      padding: 24px;
       flex-direction: column;
       align-items: center;
       //justify-content: center;

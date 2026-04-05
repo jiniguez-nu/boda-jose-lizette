@@ -67,6 +67,15 @@ END:VCALENDAR`;
   }
 };
 
+const scrollToId = (id: string) => {
+  const element = document.getElementById(id);
+  if (!element) return;
+
+  element.scrollIntoView({
+    behavior: 'smooth', // scroll suave
+    block: 'start',     // alineado al inicio del elemento
+  });
+};
   const isSafari = () => {
     const ua = navigator.userAgent;
     const isSafariBrowser = /^((?!chrome|crios|firefox|fxios|edgios|edga).)*safari/i.test(ua);
@@ -86,8 +95,8 @@ END:VCALENDAR`;
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.columnContainer}>
-            <section id="section">  
-              <article id="article">
+            <section id="section" onClick={()=>scrollToId("article-event")}>  
+              <article id="article-event">
                 <h3>Evento</h3>
                 <div className={`${styles.info} ${styles.columnContent}`}>
                   <div><h4>Fecha:</h4><p>{locationSection.date} {locationSection.time}</p></div>
@@ -137,8 +146,8 @@ END:VCALENDAR`;
                 <span>apunta (PC) o tap (móvil) para ver</span>
               </article>
             </section>
-            <section id="section">
-              <article id="article">
+            <section id="section" onClick={()=>scrollToId("article-menu")}>
+              <article id="article-menu">
                 <h3>{translations.foodSection.title}</h3>
                 <div className={`${styles.info} ${styles.columnContent}`}>
                 <p className={styles.columnContent}>{translations.foodSection.description}</p>
@@ -172,8 +181,8 @@ END:VCALENDAR`;
                 <span>apunta (PC) o tap (móvil) para ver</span>
               </article>
             </section>
-            <section id="section">
-              <article id="article">
+            <section id="section" onClick={()=>scrollToId("article-schedule")}>
+              <article id="article-schedule">
                 <h3>{translations.scheduleSection.title}</h3>
                 <div className={`${styles.info} ${styles.columnContent}`}>
                 <p className={styles.columnContent}>{translations.scheduleSection.desciption}</p>
